@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title> Player one wins </title>
+<script src="https://simplycodingcourses.com/files/simplyjs/simply.js"></script>
+<script>
+function start(){
+sjs.open();
+var gameover_text = new sjs.Text("Player one wins",58,"blue");
+
+var restartBtn = new sjs.Button("Restart", function(){
+window.location = "Pong Multiplayer.html";
+});
+var indexbtn = new sjs.Button("Menu", function(){
+window.location = "index.html";
+});
+indexbtn.bottom();
+restartBtn.center();
+} //end start
+</script>
+</head>
+<body onload="start()">
+<h1> Player one wins </h1>
+
+<div id="target" style="margin:auto;background:grey;"></div>
+</body>
+</html>

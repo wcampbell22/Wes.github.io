@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title> Pong Multiplayer </title>
+		<script 
+src="https://simplycodingcourses.com/files/simplyjs/simply.js"> </script>
+</script>
+	<script>
+function start(){
+sjs.open("target",800,500);
+var background = new sjs.Image("Images/background.png");
+background.setSize(sjs.getWidth(),sjs.getHeight());
+
+//Ball
+var ball = new sjs.Image("Images/planet.png");
+ball.type = "ball";
+ball.setSize(50,50);
+ball.center();
+ball.friction = 0;
+ball.bounce();
+ball.pushRight(3)
+ball.pushUp(2)
+
+//Paddle 1
+var paddle1 = new sjs.Image("Images/paddle3.png");
+paddle1.type = "paddle";
+paddle1.centerH();
+paddle1.setSize(100,20);
+
+//Paddle 2
+var paddle2 = new sjs.Image("Images/paddle4.png");
+paddle2.type = "paddle";
+paddle2.center().bottom();
+paddle2.setSize(100,20);
+
+/* Paddle Properties Would Be Here */
+
+
+sjs.keyDown(LEFT_KEY, function(){
+paddle1.pushLeft();
+});
+
+sjs.keyDown(A_KEY, function(){
+paddle2.pushLeft();
+});
+
+/* onHit between ball & paddle code is here */
+
+sjs.onHit("ball",["top_screen"], function(){
+window.location = "gameover1.html"; 
+});
+
+sjs.onHit("ball",["bottom_screen"], function(){
+window.location = "gameover2.html"; 
+});
+
+sjs.keyDown(RIGHT_KEY, function(){
+paddle1.pushRight();
+});
+
+sjs.keyDown(D_KEY, function(){
+paddle2.pushRight();
+});
+
+//Sounds
+var soundEffect = new Audio('Music/pop.mp3');
+
+sjs.onHit("ball","paddle", function(ball,paddle){
+soundEffect.play();
+sjs.bounceOff(ball,paddle);
+});
+
+} //end start
+
+
+</script>
+</head>
+<body onload="start()">
+<h1> Pong Multiplayer </h1>
+
+<div id="target" style="margin:auto;background:grey;"></div>
+</body>
+</html>
